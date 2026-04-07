@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/LukeMwila/docker-nodejs-application.git'
+                git branch: 'main', url: 'https://github.com/LukeMwila/docker-nodejs-application.git'
             }
         }
 
@@ -25,6 +25,18 @@ pipeline {
             steps {
                 sh 'docker ps'
             }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline finished.'
+        }
+        failure {
+            echo 'Pipeline failed. Check logs.'
+        }
+        success {
+            echo 'Pipeline succeeded!'
         }
     }
 }

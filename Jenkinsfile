@@ -10,13 +10,14 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t nodejs-app:v1 .'
+               # sh 'docker build -t nodejs-app:v1 .'
             }
         }
 
         stage('Run App') {
             steps {
-                sh 'docker run -d -p 3000:3000 nodejs-app:v1'
+                #sh 'docker run -d -p 3000:3000 nodejs-app:v1'
+                sh ' docker run -d -p 80:80 nginx '
             }
         }
 
